@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\tuane\\OneDrive\\Área de Trabalho\\Todo-List\\todo-list-api\\todo-list-api.csproj": {}
+    "C:\\Users\\tuane\\OneDrive\\Área de Trabalho\\Todo-List\\todo-list-api\\todo-list-api.csproj": {}
   },
   "projects": {
-    "c:\\Users\\tuane\\OneDrive\\Área de Trabalho\\Todo-List\\todo-list-api\\todo-list-api.csproj": {
+    "C:\\Users\\tuane\\OneDrive\\Área de Trabalho\\Todo-List\\todo-list-api\\todo-list-api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\tuane\\OneDrive\\Área de Trabalho\\Todo-List\\todo-list-api\\todo-list-api.csproj",
+        "projectUniqueName": "C:\\Users\\tuane\\OneDrive\\Área de Trabalho\\Todo-List\\todo-list-api\\todo-list-api.csproj",
         "projectName": "todo-list-api",
-        "projectPath": "c:\\Users\\tuane\\OneDrive\\Área de Trabalho\\Todo-List\\todo-list-api\\todo-list-api.csproj",
+        "projectPath": "C:\\Users\\tuane\\OneDrive\\Área de Trabalho\\Todo-List\\todo-list-api\\todo-list-api.csproj",
         "packagesPath": "C:\\Users\\tuane\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\tuane\\OneDrive\\Área de Trabalho\\Todo-List\\todo-list-api\\obj\\",
+        "outputPath": "C:\\Users\\tuane\\OneDrive\\Área de Trabalho\\Todo-List\\todo-list-api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\tuane\\AppData\\Roaming\\NuGet\\NuGet.Config"

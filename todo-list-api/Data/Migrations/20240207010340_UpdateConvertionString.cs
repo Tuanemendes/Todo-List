@@ -11,7 +11,7 @@ namespace todo_list_api.Migrations
             migrationBuilder.AlterColumn<string>(
                 name: "status",
                 table: "tb_todolist",
-                type: "text",
+                type: "nvarchar(max)",
                 nullable: false,
                 oldClrType: typeof(int),
                 oldType: "integer");

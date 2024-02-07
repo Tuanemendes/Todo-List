@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "kdVYeKjFh8JTRweitLfPyXQoj4g4fK32VjfmniQHABT5MerLmGZ/YIjtFyLqDYil2VF2XfTEv05UFR1uaWh5mQ==",
+  "dgSpecHash": "GAFphhO0wn7RpYzN22fKDItj63s9QDMyOfvbuJ/jaiqPCjbZHTi27qsFh+jcyFGokWaQGB12/AGP4GAFzS940w==",
   "success": true,
-  "projectFilePath": "c:\\Users\\tuane\\OneDrive\\Área de Trabalho\\Todo-List\\todo-list-api\\todo-list-api.csproj",
+  "projectFilePath": "C:\\Users\\tuane\\OneDrive\\Área de Trabalho\\Todo-List\\todo-list-api\\todo-list-api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\tuane\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\tuane\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.26\\microsoft.entityframeworkcore.6.0.26.nupkg.sha512",

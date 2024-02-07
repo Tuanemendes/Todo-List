@@ -1,8 +1,14 @@
+using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 using todo_list_api.Data;
 using todo_list_api.Data.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddControllers().AddJsonOptions(x =>
+{
+    x.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+});
 
 // Add services to the container.
 
