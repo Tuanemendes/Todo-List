@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using todo_list_api.Model;
 
 namespace todo_list_api.Data.Repository
@@ -11,9 +12,9 @@ namespace todo_list_api.Data.Repository
             _todoListContext = todoListContext;
         }
 
-        public Task<IEnumerable<TodoList>> GetAllTodo()
+        public async Task<IEnumerable<TodoList>> GetAllTodo()
         {
-            throw new NotImplementedException();
+            return await _todoListContext.TodoLists.ToListAsync();
         }
 
          public Task<TodoList> GeByIdTodo(int id)

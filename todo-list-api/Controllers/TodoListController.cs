@@ -15,6 +15,12 @@ namespace todo_list_api.Controllers
             _todoListRepository = todoListRepository;
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Get(){
+            var todoLists = await _todoListRepository.GetAllTodo();
+            return todoLists.Any() ? Ok(todoLists) : NoContent();
+        }
+
         [HttpPost]
         public async Task<IActionResult> Post(TodoList todoList)
         {
