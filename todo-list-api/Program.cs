@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using todo_list_api.Data;
+using todo_list_api.Data.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +15,9 @@ builder.Services.AddDbContext<TodoListContext>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+
+builder.Services.AddScoped<ITodoListRepository,TodoListRepository >();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

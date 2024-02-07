@@ -17,7 +17,11 @@ namespace todo_list_api.Data
             todoList.HasKey(x => x.Id);
             todoList.Property(x => x.Id).HasColumnName("id_todolist").ValueGeneratedOnAdd();
             todoList.Property(x => x.Description).HasColumnName("description");
-            todoList.Property(x => x.TodoStatus).HasColumnName("status");
+            todoList.Property(x => x.TodoStatus).HasColumnName("status").HasConversion(
+                p => p.ToString(),
+                p => (Status)Enum.Parse(typeof(Status),p)
+            );
+            
         }
     }
 }
