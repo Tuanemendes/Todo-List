@@ -9,9 +9,9 @@ namespace todo_list_api.Data.Repository
 
         void AddTodo(TodoList todoList);
 
-        void SaveTodo(TodoList todoList);
+        void UpdateTodo(TodoList todoList);
 
-        void Delete(int id);
+        void DeleteTodo(TodoList todoList);
 
         Task<bool> SaveChangeAsync();
         

@@ -17,9 +17,9 @@ namespace todo_list_api.Data.Repository
             return await _todoListContext.TodoLists.ToListAsync();
         }
 
-         public Task<TodoList> GeByIdTodo(int id)
+        public async Task<TodoList> GeByIdTodo(int id)
         {
-            throw new NotImplementedException();
+            return await _todoListContext.TodoLists.Where(todo => todo.Id == id).FirstOrDefaultAsync();
         }
 
         public void AddTodo(TodoList todoList)
@@ -27,16 +27,16 @@ namespace todo_list_api.Data.Repository
             _todoListContext.Add(todoList);
         }
 
-        public void SaveTodo(TodoList todoList)
+        public void UpdateTodo(TodoList todoList)
         {
-            throw new NotImplementedException();
+            _todoListContext.Update(todoList);
         }
 
-        public void Delete(int id)
+        public void DeleteTodo(TodoList todoList)
         {
-            throw new NotImplementedException();
+            _todoListContext.Remove(todoList);
         }
-        
+
         public async Task<bool> SaveChangeAsync()
         {
             return await _todoListContext.SaveChangesAsync() > 0;
