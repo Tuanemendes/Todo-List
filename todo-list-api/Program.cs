@@ -2,6 +2,7 @@ using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 using todo_list_api.Data;
 using todo_list_api.Data.Repository;
+using todo_list_api.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +24,7 @@ builder.Services.AddDbContext<TodoListContext>(options =>
 });
 
 builder.Services.AddScoped<ITodoListRepository,TodoListRepository >();
+builder.Services.AddScoped<ITodoListService, TodoListService>();
 
 var app = builder.Build();
 
