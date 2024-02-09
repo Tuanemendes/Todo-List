@@ -14,12 +14,14 @@ namespace todo_list_api.Data.Repository
 
         public async Task<IEnumerable<TodoList>> GetAllTodo()
         {
-            return await _todoListContext.TodoLists.ToListAsync();
+            var todoList = await _todoListContext.TodoLists.ToListAsync();
+            return todoList;
         }
 
         public async Task<TodoList> GeByIdTodo(int id)
         {
-            return await _todoListContext.TodoLists.Where(todo => todo.Id == id).FirstOrDefaultAsync();
+            var todoId = await _todoListContext.TodoLists.FindAsync(id);
+            return todoId!; 
         }
 
         public void AddTodo(TodoList todoList)

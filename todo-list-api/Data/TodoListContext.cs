@@ -7,10 +7,10 @@ namespace todo_list_api.Data
     {
         public TodoListContext(DbContextOptions<TodoListContext> options) : base(options)
         {
-
+            TodoLists = Set<TodoList>();
         }
 
-        public DbSet<TodoList> TodoLists { get; set; }
+        public DbSet<TodoList> TodoLists { get; set; } 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             var todoList = modelBuilder.Entity<TodoList>();

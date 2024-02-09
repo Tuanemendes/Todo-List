@@ -10,14 +10,9 @@ namespace todo_list_api.Controllers
     [Route("api/[controller]")]
     public class TodoListController : ControllerBase
     {
-        //protected readonly ITodoListRepository _todoListRepository;
 
         protected readonly ITodoListService _todoListService;
 
-        // public TodoListController(ITodoListRepository todoListRepository)
-        // {
-        //     _todoListRepository = todoListRepository;
-        // }
         public TodoListController(ITodoListService todoListService)
         {
             _todoListService = todoListService;
@@ -28,25 +23,31 @@ namespace todo_list_api.Controllers
         {
             try
             {
-            var todoLists = await _todoListService.GetAllTodos();
+                var todoLists = await _todoListService.GetAllTodos();
                 return Ok(todoLists);
             }
             catch (NoTodoFoundException)
             {
                 return NoContent();
-                
+
             }
         }
 
-        // [HttpGet("{id}")]
-        // public async Task<IActionResult> GetById(int id)
-        // {
-        //     var todo = await _todoListRepository.GeByIdTodo(id);
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            try
+            {
+                var todoId = await _todoListService.GetTodoById(id);
+                return  Ok(todoId);
+                      
+            }
+            catch (ResourceNotFoundException ex)
+            {
 
-        //     return todo != null
-        //             ? Ok(todo)
-        //             : NotFound("Tarefa não encontrada!");
-        // }
+                return NotFound(new {message = ex.Message});
+            }
+        }
         // [HttpPost]
         // public async Task<IActionResult> Post(TodoList todoList)
         // {

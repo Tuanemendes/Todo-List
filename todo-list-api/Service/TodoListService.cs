@@ -17,33 +17,27 @@ namespace todo_list_api.Service
         public async Task<IEnumerable<TodoList>> GetAllTodos()
         {
 
-            try
-            {
-                var alltodos = await _todoListRepository.GetAllTodo();
-                if (alltodos == null || !alltodos.Any())
-                {
-                    throw new NoTodoFoundException("Não foram encontradas listas de tarefas");
-                }
-                return alltodos;
-            }
-            catch (Exception exception)
-            {
-                Console.WriteLine($"Erro ao obter todas as tarefas:{exception.Message} ");
-                throw;
-            }
+            var allTodos = await _todoListRepository.GetAllTodo();
+            return allTodos == null || !allTodos.Any() ? throw new NoTodoFoundException("Não foram encontradas listas de tarefas") : allTodos;
+
         }
+
+        public async Task<TodoList> GetTodoById(int id)
+        {
+            if (id < 0)
+            {
+                throw new ArgumentException("Id inválido!");
+            }
+            var todoId = await _todoListRepository.GeByIdTodo(id) ?? throw new ResourceNotFoundException($"Id não encontrado!");
+            return todoId;
+        }
+
         public Task<bool> AddNewTodo(TodoList todoList)
         {
             throw new NotImplementedException();
         }
 
         public Task<bool> DeleteTodoById(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-
-        public Task<TodoList> GetTodoById(int id)
         {
             throw new NotImplementedException();
         }
