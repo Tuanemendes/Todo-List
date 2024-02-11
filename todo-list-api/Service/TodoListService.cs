@@ -18,33 +18,62 @@ namespace todo_list_api.Service
         {
 
             var allTodos = await _todoListRepository.GetAllTodo();
-            return allTodos == null || !allTodos.Any() ? throw new NoTodoFoundException("Não foram encontradas listas de tarefas") : allTodos;
+            return allTodos;
 
         }
 
         public async Task<TodoList> GetTodoById(int id)
         {
+
             if (id < 0)
             {
                 throw new ArgumentException("Id inválido!");
             }
-            var todoId = await _todoListRepository.GeByIdTodo(id) ?? throw new ResourceNotFoundException($"Id não encontrado!");
+            var todoId = await _todoListRepository.GeByIdTodo(id);
             return todoId;
         }
 
-        public Task<bool> AddNewTodo(TodoList todoList)
+        public async Task<bool> AddNewTodo(TodoList todoList)
         {
-            throw new NotImplementedException();
+            // if (string.IsNullOrWhiteSpace(todoList.Description))
+            // {
+            //     throw new BadRequestException("O nome da tarefa é obrigatório.");
+            // }
+            _todoListRepository.AddTodo(todoList);
+            return await _todoListRepository.SaveChangeAsync();
         }
 
-        public Task<bool> DeleteTodoById(int id)
+        public async Task<bool> UpdateExistingTodo(int id, TodoList todoList)
         {
-            throw new NotImplementedException();
+            var todoDatabase = await _todoListRepository.GeByIdTodo(id);
+            if (todoDatabase != null)
+            {
+                todoDatabase.Description = todoList.Description ?? todoDatabase.Description;
+                todoDatabase.TodoStatus = todoList.TodoStatus != new Status() ? todoList.TodoStatus : todoDatabase.TodoStatus;
+
+                _todoListRepository.UpdateTodo(todoDatabase);
+
+                return await _todoListRepository.SaveChangeAsync();
+            }
+
+            throw new ResourceNotFoundException("Tarefa não encontrada!");
+
+
+        }
+        public async Task<bool> DeleteTodoById(int id)
+        {
+            var todoDatabase = await _todoListRepository.GeByIdTodo(id);
+
+            if (todoDatabase != null)
+            {
+                _todoListRepository.DeleteTodo(todoDatabase);
+                return await _todoListRepository.SaveChangeAsync();
+            }
+
+             throw new ResourceNotFoundException("Tarefa não encontrada!");
+
+
         }
 
-        public Task<bool> UpdateExistingTodo(int id, TodoList todoList)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using todo_list_api.Data.Repository;
 using todo_list_api.Exceptions;
 using todo_list_api.Model;
 using todo_list_api.Service;
@@ -11,83 +10,58 @@ namespace todo_list_api.Controllers
     public class TodoListController : ControllerBase
     {
 
-        protected readonly ITodoListService _todoListService;
+        protected readonly ITodoListService _itodoListService;
 
-        public TodoListController(ITodoListService todoListService)
+        public TodoListController(ITodoListService itodoListService)
         {
-            _todoListService = todoListService;
+            _itodoListService = itodoListService;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            try
-            {
-                var todoLists = await _todoListService.GetAllTodos();
-                return Ok(todoLists);
-            }
-            catch (NoTodoFoundException)
-            {
-                return NoContent();
+            var todoLists = await _itodoListService.GetAllTodos();
 
-            }
+            return todoLists == null || !todoLists.Any()
+                ? throw new ResourceNotFoundException("Lista de tarefas não encontrado!")
+                : Ok(todoLists);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            try
-            {
-                var todoId = await _todoListService.GetTodoById(id);
-                return  Ok(todoId);
-                      
-            }
-            catch (ResourceNotFoundException ex)
-            {
 
-                return NotFound(new {message = ex.Message});
-            }
+            var todoId = await _itodoListService.GetTodoById(id) ?? throw new ResourceNotFoundException(" Id da Lista de tarefas não encontrado!");
+            return Ok(todoId);
         }
-        // [HttpPost]
-        // public async Task<IActionResult> Post(TodoList todoList)
-        // {
-        //     _todoListRepository.AddTodo(todoList);
-        //     return await _todoListRepository.SaveChangeAsync()
-        //         ? Ok("Tarefa adicionada com sucesso!")
-        //         : BadRequest("Erro ao salvar a tarefa");
-        // }
 
-        // [HttpPut("{id}")]
-        // public async Task<IActionResult> PutById(int id, TodoList todoList)
-        // {
-        //     var todoDatabase = await _todoListRepository.GeByIdTodo(id);
+        [HttpPost]
+        public async Task<IActionResult> Post(TodoList todoList)
+        {
+            var newTodoList = await _itodoListService.AddNewTodo(todoList);
+            return newTodoList
+                ? CreatedAtAction(nameof(GetById), new {id= todoList.Id},"Tarefa adicionada com sucesso!")
+                : throw new BadRequestException("Erro ao salvar a tarefa");
+        }
 
-        //     if (todoDatabase == null) return NotFound("Tarefa não encontrada!");
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutById(int id, TodoList todoList)
+        {
+            var updateTodo =  await _itodoListService.UpdateExistingTodo(id,todoList);
+            return updateTodo
+               ? Ok("Tarefa atualizada com sucesso!")
+               : throw new BadRequestException("Erro ao atualizar a tarefa");
 
-        //     todoDatabase.Description = todoList.Description ?? todoDatabase.Description;
-        //     todoDatabase.TodoStatus = todoList.TodoStatus != new Status() ? todoList.TodoStatus : todoDatabase.TodoStatus;
+        }
 
-        //     _todoListRepository.UpdateTodo(todoDatabase);
-
-        //     return await _todoListRepository.SaveChangeAsync()
-        //        ? Ok("Tarefa atualizada com sucesso!")
-        //        : BadRequest("Erro ao Atualizar a tarefa");
-
-        // }
-
-        // [HttpDelete("{id}")]
-        // public async Task<IActionResult> DeleteById(int id)
-        // {
-        //     var todoDatabase = await _todoListRepository.GeByIdTodo(id);
-
-        //     if (todoDatabase == null) return NotFound("Tarefa não encontrada!");
-
-        //     _todoListRepository.DeleteTodo(todoDatabase);
-
-        //     return await _todoListRepository.SaveChangeAsync()
-        //        ? Ok("Tarefa excluída com sucesso!")
-        //        : BadRequest("Erro ao deletar a tarefa");
-        // }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteById(int id)
+        {
+            var deleteTodo = await _itodoListService.DeleteTodoById(id);
+            return deleteTodo
+               ? Ok("Tarefa excluída com sucesso!")
+               : throw new BadRequestException("Erro ao deletar a tarefa");
+        }
 
     }
 }
