@@ -2,6 +2,7 @@ using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 using todo_list_api.Data;
 using todo_list_api.Data.Repository;
+using todo_list_api.Middlewares;
 using todo_list_api.Service;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -34,6 +35,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseMiddleware(typeof(ExceptionHandlingMiddleware));
 
 app.UseHttpsRedirection();
 
