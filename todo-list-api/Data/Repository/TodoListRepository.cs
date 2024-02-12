@@ -23,6 +23,13 @@ namespace todo_list_api.Data.Repository
             var todoId = await _todoListContext.TodoLists.FindAsync(id);
             return todoId!; 
         }
+          public async Task<IEnumerable<TodoList>> GetByStatus(Status status)
+        {
+            return await _todoListContext.TodoLists
+            .Where(todo => todo.TodoStatus == status)
+            .OrderBy(todo => todo.Id)
+            .ToListAsync();
+        }
 
         public void AddTodo(TodoList todoList)
         {
@@ -39,6 +46,7 @@ namespace todo_list_api.Data.Repository
             _todoListContext.Remove(todoList);
         }
 
+      
         public async Task<bool> SaveChangeAsync()
         {
             return await _todoListContext.SaveChangesAsync() > 0;

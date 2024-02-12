@@ -21,18 +21,21 @@ namespace todo_list_api.Controllers
         public async Task<IActionResult> GetAll()
         {
             var todoLists = await _itodoListService.GetAllTodos();
-
-            return todoLists == null || !todoLists.Any()
-                ? throw new ResourceNotFoundException("Lista de tarefas não encontrado!")
-                : Ok(todoLists);
+            return Ok(todoLists);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-
-            var todoId = await _itodoListService.GetTodoById(id) ?? throw new ResourceNotFoundException(" Id da Lista de tarefas não encontrado!");
+            var todoId = await _itodoListService.GetTodoById(id);
             return Ok(todoId);
+        }
+
+        [HttpGet("filter/{status}")]
+        public async Task<IActionResult> GetByFilterStatus(Status status){
+
+            var todoFilterStatus = await _itodoListService.GetByStatus(status);
+            return Ok(todoFilterStatus);
         }
 
         [HttpPost]

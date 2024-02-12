@@ -18,6 +18,12 @@ namespace todo_list_api.Service
         {
 
             var allTodos = await _todoListRepository.GetAllTodo();
+
+            if (allTodos == null || !allTodos.Any())
+            {
+                throw new ResourceNotFoundException("Lista de tarefas não encontrada!");
+            }
+
             return allTodos;
 
         }
@@ -29,8 +35,26 @@ namespace todo_list_api.Service
             {
                 throw new ArgumentException("Id inválido!");
             }
-            var todoId = await _todoListRepository.GeByIdTodo(id);
+            var todoId = await _todoListRepository.GeByIdTodo(id) ?? throw new ResourceNotFoundException("Id da Lista de tarefas não encontrado!");
             return todoId;
+        }
+
+        public async Task<IEnumerable<TodoList>> GetByStatus(Status status)
+        {
+            if (status != Status.Pendente && status != Status.EmAndamento && status != Status.Concluido)
+            {
+                throw new ArgumentException("Status Inválido!");
+            }
+
+            var todoListsFilterStatus = await _todoListRepository.GetByStatus(status);
+
+            if (todoListsFilterStatus == null || !todoListsFilterStatus.Any())
+            {
+
+                throw new ResourceNotFoundException("Não foram encontradas tarafas com status");
+            }
+
+            return todoListsFilterStatus;
         }
 
         public async Task<bool> AddNewTodo(TodoList todoList)
@@ -70,10 +94,10 @@ namespace todo_list_api.Service
                 return await _todoListRepository.SaveChangeAsync();
             }
 
-             throw new ResourceNotFoundException("Tarefa não encontrada!");
-
+            throw new ResourceNotFoundException("Tarefa não encontrada!");
 
         }
+
 
     }
 }
