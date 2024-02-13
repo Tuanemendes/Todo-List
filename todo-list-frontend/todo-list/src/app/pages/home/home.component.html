@@ -1,0 +1,18 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Descrição</th>
+        <th scope="col">Status</th>
+
+      </tr>
+    </thead>
+    <tbody *ngFor="let todo of todos">
+      <tr>
+       
+        <td>{{todo.descripition}}</td>
+        <td>{{todo.statusTodo}}</td>
+   
+      </tr>
+      
+    </tbody>
+  </table>
