@@ -14,21 +14,24 @@ namespace todo_list_api.Data.Repository
 
         public async Task<IEnumerable<TodoList>> GetAllTodo()
         {
-            var todoList = await _todoListContext.TodoLists.ToListAsync();
+            var todoList = await _todoListContext.TodoLists
+            .OrderBy(todo => todo.Id)
+            .ToListAsync();
             return todoList;
         }
 
         public async Task<TodoList> GeByIdTodo(int id)
         {
             var todoId = await _todoListContext.TodoLists.FindAsync(id);
-            return todoId!; 
+            return todoId!;
         }
-          public async Task<IEnumerable<TodoList>> GetByStatus(Status status)
+        public async Task<IEnumerable<TodoList>> GetByStatus(Status status)
         {
-            return await _todoListContext.TodoLists
+            var todoListStatus = await _todoListContext.TodoLists
             .Where(todo => todo.TodoStatus == status)
             .OrderBy(todo => todo.Id)
             .ToListAsync();
+            return todoListStatus;
         }
 
         public void AddTodo(TodoList todoList)
@@ -46,7 +49,7 @@ namespace todo_list_api.Data.Repository
             _todoListContext.Remove(todoList);
         }
 
-      
+
         public async Task<bool> SaveChangeAsync()
         {
             return await _todoListContext.SaveChangesAsync() > 0;
