@@ -16,7 +16,7 @@ namespace todo_list_api.Migrations
                     id_todolist = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     description = table.Column<string>(type: "text", nullable: false),
-                    status = table.Column<int>(type: "integer", nullable: false)
+                    status = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {

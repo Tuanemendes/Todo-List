@@ -35,8 +35,9 @@ namespace todo_list_api.Migrations
                         .HasColumnType("text")
                         .HasColumnName("description");
 
-                    b.Property<int>("TodoStatus")
-                        .HasColumnType("integer")
+                    b.Property<string>("TodoStatus")
+                        .IsRequired()
+                        .HasColumnType("text")
                         .HasColumnName("status");
 
                     b.HasKey("Id");

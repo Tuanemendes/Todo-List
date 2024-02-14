@@ -11,7 +11,7 @@ using todo_list_api.Data;
 namespace todo_list_api.Migrations
 {
     [DbContext(typeof(TodoListContext))]
-    [Migration("20240208013727_InitialCreate")]
+    [Migration("20240214160647_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -37,8 +37,9 @@ namespace todo_list_api.Migrations
                         .HasColumnType("text")
                         .HasColumnName("description");
 
-                    b.Property<int>("TodoStatus")
-                        .HasColumnType("integer")
+                    b.Property<string>("TodoStatus")
+                        .IsRequired()
+                        .HasColumnType("text")
                         .HasColumnName("status");
 
                     b.HasKey("Id");

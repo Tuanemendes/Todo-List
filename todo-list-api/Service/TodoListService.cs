@@ -63,6 +63,7 @@ namespace todo_list_api.Service
             // {
             //     throw new BadRequestException("O nome da tarefa é obrigatório.");
             // }
+
             _todoListRepository.AddTodo(todoList);
             return await _todoListRepository.SaveChangeAsync();
         }
@@ -98,6 +99,10 @@ namespace todo_list_api.Service
 
         }
 
+        // public string GetStatusAsString(Status status)
+        // {
+        //     return status.ToStatusString();
+        // }
 
     }
 }
