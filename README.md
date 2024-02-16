@@ -71,7 +71,8 @@ dotnet run
 
 ## Tecnologias Utilizadas 
 
- (ORM) Entity Framework Core
+ .net 6.0.41 
+ (ORM) Entity Framework Core <br>
  Angular 17 
 
 ## Autor
