@@ -63,7 +63,7 @@ dotnet ef database update
 dotnet run 
 ```
 
-Para acessar a api se caso não abrir automaticamente  os endpointes no swagger é necessário acessar pelo link abaixo:
+Para acessar a api se caso não abrir automaticamente  os endpoints no swagger é necessário acessar pelo link abaixo:
 
 ```
 https://localhost:7191/swagger/index.html
