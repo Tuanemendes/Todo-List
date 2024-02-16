@@ -63,6 +63,16 @@ dotnet ef database update
 dotnet run 
 ```
 
+Para acessar a api se caso não abrir automaticamente  os endpointes no swagger é necessário acessar pelo link abaixo:
+
+```
+https://localhost:7191/swagger/index.html
+
+```
+![image](https://github.com/Tuanemendes/Todo-List/assets/54903202/73b75e12-2510-4e3d-bfa8-a73ad0d10c7b)
+
+
+
 ## Status do Projeto
 <div align="left">
   
@@ -71,9 +81,12 @@ dotnet run
 
 ## Tecnologias Utilizadas 
 
- .net 6.0.41 
+ .net 6.0.41 <br>
  (ORM) Entity Framework Core <br>
- Angular 17 
+ PostgreSQL <br>
+ Angular 17 <br>
+ Docker <br>
+ Swagger <br>
 
 ## Autor
 Tuane Mendes 
