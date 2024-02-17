@@ -7,6 +7,13 @@ Lista de Tarefas
 A API de lista de tarefas é uma aplicação voltada para o gerenciamento de tarefas e afazeres.
 Seu propósito é permitir aos usuários criar, atualizar, visualizar , excluir e filtrar as tarefas de maneira eficiente e organizada.
 
+## Modelagem 
+
+![image](https://github.com/Tuanemendes/Todo-List/assets/54903202/8389d467-24d5-4f07-822f-25bcfeb5a784)
+
+
+
+
 ## Pré-requisitos
 
 SDK .net versão 6.0.41 <br>
@@ -22,7 +29,7 @@ Utilização da imagem do banco Postgresql 16
 docker run -p 5432:5432 --name postgres -e POSTGRES_PASSWORD=root -d postgres:16
 
 ```
-criação de um docker compose para armazenar os dados e utilização da imagem
+Criação do arquivo docker compose para armazenar os dados e utilização da imagem
 
 ```
 version: '3.5'
