@@ -16,10 +16,11 @@ Seu propósito é permitir aos usuários criar, atualizar, visualizar , excluir 
 
 ## Pré-requisitos
 
-SDK .net versão 6.0.41 <br>
-Vscode ou Visual Studio <br>
-Bando de Dados: Imagem docker do Postgres versão 16 <br>
-Gerenciador de Banco de Dados: pgAdmin 4  
+[SDK .net versão 6.0.41]( https://dotnet.microsoft.com/pt-br/download/dotnet/6.0)  <br> 
+[Vscode](https://code.visualstudio.com/download)  ou [Visual Studio](https://visualstudio.microsoft.com/pt-br/downloads/) <br> 
+[Docker](https://www.docker.com/products/docker-desktop/) version 20.10.23, build 7155243 
+Bando de Dados: Imagem [docker do Postgresql](https://hub.docker.com/_/postgres) versão 16 <br>
+Gerenciador de Banco de Dados: [pgAdmin 4](https://www.pgadmin.org/download/)  
 
 ## Instalação
 
@@ -54,20 +55,26 @@ services:
 ```
 
 Para subir a imagem 
-Criar como o nome docker-compose-todolist.yml
-no local do arquivo executar o comando 
+criar como o nome docker-compose-todolist.yml
+e no local do arquivo executar o comando abaixo:
 
 ```
 docker-compose -f .\docker-compose-todolist.yml up -d
 ```
-Para executar  seguir os passoa a seguir: 
+Para rodar api  seguir os passoa a seguir: 
 
 ```bash
 git clone https://github.com/Tuanemendes/Todo-List.git
-cd todo-list-api // entrar na pasta da api 
-dotnet restore  ///para restaurar as dependências do projeto
+cd todo-list-api // entrar na pasta da api
+
+dotnet restore  //para restaurar as dependências do projeto
+
+dotnet ef migrations add InitialCreate // ****se for necesssário , pois já está criado no projeto só como update ja deve criar a tabela com as colunas.
+
 dotnet ef database update
-dotnet run 
+dotnet run
+
+
 ```
 
 Para acessar a api se caso não abrir automaticamente  os endpoints no swagger é necessário acessar pelo link abaixo:
