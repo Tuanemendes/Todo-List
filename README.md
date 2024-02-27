@@ -76,6 +76,7 @@ dotnet tool install --global dotnet-ef --version 6.0.26 //  para usar o Entity F
 dotnet ef database update
 dotnet run
 
+dotnet dev-certs https --trust // pode ser necessário para instalar os certificados de desenvolvimento como confiáveis na máquina
 
 ```
 
