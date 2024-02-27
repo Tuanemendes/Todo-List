@@ -71,6 +71,8 @@ dotnet restore  //para restaurar as dependências do projeto
 
 dotnet ef migrations add InitialCreate // ****se for necesssário , pois já está criado no projeto só como update ja deve criar a tabela com as colunas.
 
+dotnet tool install --global dotnet-ef --version 6.0.0  //  para usar o Entity Framework Core CLI 
+
 dotnet ef database update
 dotnet run
 
